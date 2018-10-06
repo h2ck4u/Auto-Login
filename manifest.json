@@ -1,0 +1,21 @@
+{
+  "name": "je-chrome-extension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "자동로그인",
+  "homepage_url": "https://h2ck4u.github.io",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "login"
+  },
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "tabs"
+  ]
+}
