@@ -4,18 +4,10 @@
   "manifest_version": 2,
   "description": "자동로그인",
   "homepage_url": "https://h2ck4u.github.io",
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
-  },
   "browser_action": {
-    "default_title": "login"
+    "default_popup": "index.html"
   },
   "permissions": [
-    "https://*/*",
-    "http://*/*",
-    "tabs"
+      "activeTab", "http://*/*", "https://*/*"
   ]
 }
