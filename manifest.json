@@ -7,7 +7,17 @@
   "browser_action": {
     "default_popup": "index.html"
   },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*.synap.co.kr/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
   "permissions": [
-      "activeTab", "http://*/*", "https://*/*"
+      "activeTab", "http://*.synap.co.kr/*", "https://*.synap.co.kr/*"
   ]
 }
