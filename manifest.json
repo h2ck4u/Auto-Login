@@ -1,6 +1,6 @@
 {
-  "name": "je-chrome-extension",
-  "version": "0.0.1",
+  "name": "Auto Login",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "자동로그인",
   "homepage_url": "https://h2ck4u.github.io",
@@ -14,7 +14,8 @@
   "content_scripts": [
     {
       "matches": ["http://*.synap.co.kr/*"],
-      "js": ["contentScript.js"]
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
     }
   ],
   "permissions": [
