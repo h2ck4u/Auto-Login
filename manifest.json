@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["http://*.synap.co.kr/*"],
-      "js": ["contentScript.js"],
+      "js": ["contentScript.js", "jquery-1.11.0.min.js"],
       "run_at": "document_end"
     }
   ],
