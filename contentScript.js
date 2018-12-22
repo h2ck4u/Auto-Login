@@ -1,4 +1,5 @@
 
+appendCheckBox();
 // 아이디와 패스워드를 셋팅 해야함. 입력받도록 수정하기.
 var myId = '';
 var myPass = '';
@@ -18,6 +19,16 @@ switch(url) {
   case URL_ITS:
     singIn_Its();
     break;
+}
+
+function appendCheckBox() {
+  const elInputs = document.getElementsByTagName('input');
+  Array.from(elInputs).forEach(elInput => {
+      let input = document.createElement('input');
+      input.setAttribute('type', 'checkbox');
+      input.checked = false;
+      elInput.parentElement.prepend(input);
+  });
 }
 
 function signIn_Intra1() {
