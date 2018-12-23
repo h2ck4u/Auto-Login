@@ -1,9 +1,6 @@
-chrome.runtime.onMessage.addListener(
-    function(message, callback) {
-      if (message == 'runContentScript'){
-        chrome.tabs.executeScript({
-          file: 'contentScript.js'
-        });
-      }
- });
-  
+chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
+  if (message && message.type == 'saveConfig') {
+      alert('saveConfig!!');
+      sendResponse(true);
+  }
+});

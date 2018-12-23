@@ -22,6 +22,10 @@ switch(url) {
 }
 
 function appendCheckBox() {
+  chrome.extension.sendMessage({type: 'saveConfig'}, function(data) {
+    
+  });
+  
   const elInputs = document.getElementsByTagName('input');
   Array.from(elInputs).forEach(elInput => {
       let input = document.createElement('input');
