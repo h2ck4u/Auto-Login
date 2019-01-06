@@ -5,7 +5,7 @@
   "description": "자동로그인",
   "homepage_url": "https://h2ck4u.github.io",
   "browser_action": {
-    "default_popup": "index.html"
+    "default_popup": "popup.html"
   },
   "background": {
     "scripts": ["background.js"],
@@ -19,6 +19,9 @@
     }
   ],
   "permissions": [
-      "activeTab", "http://*.synap.co.kr/*", "https://*.synap.co.kr/*"
+      "storage", 
+      "activeTab", 
+      "http://*.synap.co.kr/*", 
+      "https://*.synap.co.kr/*"
   ]
 }
