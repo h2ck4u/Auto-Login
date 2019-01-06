@@ -1,6 +1,3 @@
-
-appendCheckBox();
-// 아이디와 패스워드를 셋팅 해야함. 입력받도록 수정하기.
 var myId = '';
 var myPass = '';
 setSignInInfo();
@@ -25,23 +22,13 @@ if (!!myId && !!myPass) {
   }, 1000);
 }
 
-function appendCheckBox() {  
-  // const elInputs = document.getElementsByTagName('input');
-  // Array.from(elInputs).forEach(elInput => {
-  //     let input = document.createElement('input');
-  //     input.setAttribute('type', 'checkbox');
-  //     input.checked = false;
-  //     elInput.parentElement.prepend(input);
-  // });
-}
-
 function setSignInInfo() {
   chrome.storage.sync.get("data", function(signInfo) {
     if (!chrome.runtime.error) {
       var domain = document.domain;
       if(signInfo.data[domain]) {
         myId = signInfo.data[domain].id;
-        myPass = signInfo.data[domain].pass
+        myPass = signInfo.data[domain].pw
       }
     }
   });
