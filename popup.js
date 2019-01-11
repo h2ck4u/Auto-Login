@@ -1,12 +1,10 @@
 document.getElementById("addConfig").onclick = function() {
   var data = {};
-  var id = document.getElementById('id').value;
-  var pw = document.getElementById('pw').value;
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) { 
       chrome.tabs.sendMessage(tabs[0].id, {type:"getDomain"}, function(response){
         data[response] = {
-          id: id,
-          pw: pw
+          id: document.getElementById('id').value,
+          pw: document.getElementById('pw').value
         };
         chrome.storage.sync.set({ "data" : data }, function() {
           if (chrome.runtime.error) {
