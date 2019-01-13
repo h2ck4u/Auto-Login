@@ -1,20 +1,39 @@
 document.getElementById("addConfig").onclick = function() {
-  var data = {};
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) { 
-      chrome.tabs.sendMessage(tabs[0].id, {type:"getDomain"}, function(response){
-        data[response] = {
-          id: document.getElementById('id').value,
-          pw: document.getElementById('pw').value
-        };
-        chrome.storage.sync.set({ "data" : data }, function() {
-          if (chrome.runtime.error) {
-            console.log("Runtime error.");
-          }
+      chrome.tabs.sendMessage(tabs[0].id, {type:"getDomain"}, function(domain){
+        getStorageData('data').then(function(data) {
+          updateStroageData(data, domain);
         });
       });
     });
-    
     // window.close();
+}
+
+function getStorageData(key) {
+  return new Promise(function(resolve, reject) {
+    chrome.storage.sync.get(key, function(signInfo) {
+      if (!chrome.runtime.error) {
+        resolve(signInfo.data || {});
+      }
+    });
+  });
+}
+
+function updateStroageData(value, domain) {
+  if (!!domain) {
+    let id = document.getElementById('id').value;
+    let pw = document.getElementById('pw').value;
+    let keys = Object.keys(value || {}) || [];
+    let updataData = {}; 
+    keys.forEach(key => {
+      updataData[key] = value[key];
+    });
+    updataData[domain] = {
+      id: id,
+      pw: pw
+    }
+    chrome.storage.sync.set({ "data" : updataData });
+  }
 }
 
 document.getElementById("option").onclick = function() {
