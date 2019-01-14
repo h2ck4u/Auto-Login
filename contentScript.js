@@ -24,19 +24,34 @@ function setSignInInfo() {
 
 function signIn() {
   if (!!myId && !!myPass) {
-      var url = document.URL;
-      switch(url) {
-        case URL_Intra1:
+      var target = getTargetFromDomain(document.URL);
+      
+      switch(target) {
+        case 'intra':
           signIn_Intra1();
           break;
-        case URL_WIKI:
+        case 'wiki':
           signIn_Wiki();
           break;
-        case URL_ITS:
+        case 'its':
           singIn_Its();
           break;
       }
   }  
+}
+
+function getTargetFromDomain(domain) {
+    var target; 
+
+    if (domain.indexOf('http://intra1.synap.co.kr/login.') > -1) {
+      target = 'intra';
+    } else if (domain.indexOf('http://wiki.synap.co.kr/login') > -1) {
+      target = 'wiki';
+    } else if (domain.indexOf('http://its.synap.co.kr/') > -1) {
+      target = 'its';
+    }
+
+    return target;
 }
 
 function signIn_Intra1() {
@@ -50,7 +65,7 @@ function signIn_Intra1() {
 function singIn_Its() {
   var id = document.getElementById('login-form-username');
   var pass = document.getElementById('login-form-password');
-  var btnLogin = document.getElementById('login');
+  var btnLogin = document.getElementById('login-form-submit');
   id.value = myId;
   pass.value = myPass;
   btnLogin.click(); 
