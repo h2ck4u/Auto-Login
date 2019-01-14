@@ -43,11 +43,11 @@ function signIn() {
 function getTargetFromDomain(domain) {
     var target; 
 
-    if (domain.indexOf('http://intra1.synap.co.kr/login.') > -1) {
+    if (domain.indexOf('intra1.synap.co.kr/login.') > -1) {
       target = 'intra';
-    } else if (domain.indexOf('http://wiki.synap.co.kr/login') > -1) {
+    } else if (domain.indexOf('wiki.synap.co.kr/login') > -1) {
       target = 'wiki';
-    } else if (domain.indexOf('http://its.synap.co.kr/') > -1) {
+    } else if (domain.indexOf('its.synap.co.kr/') > -1) {
       target = 'its';
     }
 
@@ -65,7 +65,7 @@ function signIn_Intra1() {
 function singIn_Its() {
   var id = document.getElementById('login-form-username');
   var pass = document.getElementById('login-form-password');
-  var btnLogin = document.getElementById('login-form-submit');
+  var btnLogin = document.getElementById('login-form-submit') || document.getElementById('login');
   id.value = myId;
   pass.value = myPass;
   btnLogin.click(); 
