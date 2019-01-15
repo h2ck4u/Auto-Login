@@ -15,11 +15,11 @@ function restore_options() {
 }
 
 function appendSelect(signInfo) {
-  var elSelect = document.getElementById('signInfo');
-  var domains = Object.keys(signInfo.data);
+  const elSelect = document.getElementById('signInfo');
+  const domains = Object.keys(signInfo.data);
   domains.forEach(domain => {
-      var container = document.createElement('div');
-      var str = `
+      const container = document.createElement('div');
+      const str = `
       <input type="checkbox" id=${domain}> ${domain} </input> 
       <label>ID: </label> <input id="id"></input> 
       <label>PW: </label> <input id="pw" type="password"></input>`;
