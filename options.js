@@ -7,7 +7,7 @@ function delete_options() {
     Array.from(checkboxes).forEach(checkbox => {
         if(checkbox.checked) {
             getStorageData('data').then(function(data) {
-                
+                deleteStroageData(data, checkbox.id);              
             });
         }
     });
@@ -24,7 +24,8 @@ function restore_options() {
 function deleteStroageData(data, domain) {
     if (!!domain) {
       delete data[domain];
-      chrome.storage.sync.set({ "data" : updataData });
+      chrome.storage.sync.set({ "data" : data });
+      window.location.reload();
     }
 }
 
