@@ -3,7 +3,14 @@ function save_options() {
 }
 
 function delete_options() {
-    //TBD
+    let checkboxes = document.getElementsByTagName('input');
+    Array.from(checkboxes).forEach(checkbox => {
+        if(checkbox.checked) {
+            getStorageData('data').then(function(data) {
+                deleteStroageData(data, checkbox.id);              
+            });
+        }
+    });
 }
   
 function restore_options() { 
@@ -12,6 +19,14 @@ function restore_options() {
             appendSelect(signInfo);
         }
     });
+}
+
+function deleteStroageData(data, domain) {
+    if (!!domain) {
+      delete data[domain];
+      chrome.storage.sync.set({ "data" : data });
+      window.location.reload();
+    }
 }
 
 function appendSelect(signInfo) {
@@ -29,6 +44,16 @@ function appendSelect(signInfo) {
       elSelect.append(container);
   });
 }
+
+function getStorageData(key) {
+    return new Promise(function(resolve, reject) {
+      chrome.storage.sync.get(key, function(signInfo) {
+        if (!chrome.runtime.error) {
+          resolve(signInfo.data || {});
+        }
+      });
+    });
+  }
 
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click', save_options);
