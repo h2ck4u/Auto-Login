@@ -1,17 +1,22 @@
-document.getElementById("addConfig").onclick = function() {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) { 
-      chrome.tabs.sendMessage(tabs[0].id, {type:"getDomain"}, function(domain){
-        getStorageData('data').then(function(data) {
-          updateStroageData(data, domain);
-        });
+document.getElementById("addConfig").onclick = function () {
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      type: "getDomain"
+    }, function (domain) {
+      getStorageData('data').then(function (data) {
+        updateStroageData(data, domain);
       });
     });
-    // window.close();
+  });
+  // window.close();
 }
 
 function getStorageData(key) {
-  return new Promise(function(resolve, reject) {
-    chrome.storage.sync.get(key, function(signInfo) {
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(key, function (signInfo) {
       if (!chrome.runtime.error) {
         resolve(signInfo.data || {});
       }
@@ -24,7 +29,7 @@ function updateStroageData(value, domain) {
     let id = document.getElementById('id').value;
     let pw = document.getElementById('pw').value;
     let keys = Object.keys(value || {}) || [];
-    let updataData = {}; 
+    let updataData = {};
     keys.forEach(key => {
       updataData[key] = value[key];
     });
@@ -32,10 +37,12 @@ function updateStroageData(value, domain) {
       id: id,
       pw: pw
     }
-    chrome.storage.sync.set({ "data" : updataData });
+    chrome.storage.sync.set({
+      "data": updataData
+    });
   }
 }
 
-document.getElementById("option").onclick = function() {
-    window.open(chrome.runtime.getURL('options.html'));
+document.getElementById("option").onclick = function () {
+  window.open(chrome.runtime.getURL('options.html'));
 };
