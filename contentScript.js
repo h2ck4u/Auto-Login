@@ -41,7 +41,7 @@ function signIn() {
 }
 
 function getTargetFromDomain(domain) {
-  const target;
+  let target;
 
   if (domain.indexOf('intra1.synap.co.kr/login.') > -1) {
     target = 'intra';
@@ -81,6 +81,14 @@ function signIn_Wiki() {
   btnLogin.click();
 }
 
+function getInputFromPoint() {
+  let event = window.event;
+  let pointX = event.x;
+  let pointY = event.y;
+  return document.elementsFromPoint(pointX, pointY).filter(el => {return el.nodeName === 'INPUT'});
+}
+
+document.addEventListener('click', getInputFromPoint);
 chrome.runtime.onMessage.addListener(
   function (message, sender, sendResponse) {
     const domain = document.domain;
