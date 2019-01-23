@@ -1,5 +1,15 @@
-# Auto-Login
+# AutoLogin with Chrome Extensions
 
-로그인을 할 때 id, password를 매번 입력하기 귀찮아서 만들기 시작한 확장프로그램.
+AutoLogin with Chrome Extensions/
 
-아이디와 패스워드를 받아서 특정 페이지에서 자동로그인 기능.
+## Getting Started
+
+Download From Chrome WebStore(https://chrome.google.com/webstore/category/extensions)
+
+## Authors
+
+See also the list of [contributors](https://github.com/h2ck4u/Auto-Login/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
