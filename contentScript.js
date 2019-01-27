@@ -81,6 +81,15 @@ function signIn_Wiki() {
   btnLogin.click();
 }
 
+function setInput() {
+  const elInputs = getInputFromPoint();
+  if (elInputs.length > 0) {
+    Array.from(elInputs).forEach(input => {
+      setBorder(input);
+    }) 
+  }
+}
+
 function getInputFromPoint() {
   let event = window.event;
   let pointX = event.x;
@@ -88,7 +97,11 @@ function getInputFromPoint() {
   return document.elementsFromPoint(pointX, pointY).filter(el => {return el.nodeName === 'INPUT'});
 }
 
-document.addEventListener('click', getInputFromPoint);
+function setBorder(el) {
+  el.style.border = 'solid 5px red';
+}
+
+document.addEventListener('click', setInput);
 chrome.runtime.onMessage.addListener(
   function (message, sender, sendResponse) {
     const domain = document.domain;
