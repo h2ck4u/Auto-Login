@@ -85,7 +85,7 @@ function setInput() {
   const elInputs = getInputFromPoint();
   if (elInputs.length > 0) {
     Array.from(elInputs).forEach(input => {
-      setBorder(input);
+      marking(input);
     }) 
   }
 }
@@ -97,8 +97,10 @@ function getInputFromPoint() {
   return document.elementsFromPoint(pointX, pointY).filter(el => {return el.nodeName === 'INPUT'});
 }
 
-function setBorder(el) {
+function marking(el) {
   el.style.border = 'solid 5px red';
+  let className = el.className;
+  el.className = `${className} AutoLogin`;
 }
 
 document.addEventListener('click', setInput);
