@@ -81,6 +81,15 @@ function signIn_Wiki() {
   btnLogin.click();
 }
 
+function setInput() {
+  const elInputs = getInputFromPoint();
+  if (elInputs.length > 0) {
+    Array.from(elInputs).forEach(input => {
+      marking(input);
+    }) 
+  }
+}
+
 function getInputFromPoint() {
   let event = window.event;
   let pointX = event.x;
@@ -100,8 +109,8 @@ function markingPw(el) {
   let className = el.className;
   el.className = `${className} AutoLogin`;
 }
+document.addEventListener('click', setInput);
 
-// document.addEventListener('click', setInput);
 chrome.runtime.onMessage.addListener(
   function (message, sender, sendResponse) {
     const domain = document.domain;
