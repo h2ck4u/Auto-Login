@@ -97,19 +97,34 @@ function getInputFromPoint() {
   return document.elementsFromPoint(pointX, pointY).filter(el => {return el.nodeName === 'INPUT'});
 }
 
-function marking(el) {
+document.addEventListener('click', getInputFromPoint);
+function markingId(el) {
   el.style.border = 'solid 5px red';
   let className = el.className;
   el.className = `${className} AutoLogin`;
 }
 
+function markingPw(el) {
+  el.style.border = 'solid 5px red';
+  let className = el.className;
+  el.className = `${className} AutoLogin`;
+}
 document.addEventListener('click', setInput);
+
 chrome.runtime.onMessage.addListener(
   function (message, sender, sendResponse) {
     const domain = document.domain;
     switch (message.type) {
       case "getDomain":
         sendResponse(domain);
+        break;
+      case "getIdInput":
+        console.log('1111');
+        sendResponse(1);
+        break;
+      case "getPwInput":
+        console.log('2222');
+        sendResponse(2);
         break;
     }
   }
