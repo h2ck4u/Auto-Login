@@ -92,10 +92,22 @@ document.addEventListener('click', getInputFromPoint);
 chrome.runtime.onMessage.addListener(
   function (message, sender, sendResponse) {
     const domain = document.domain;
+    console.log(message.type);
     switch (message.type) {
       case "getDomain":
         sendResponse(domain);
         break;
+<<<<<<< Updated upstream
+=======
+      case "getIdInput":
+        console.log('1111',getInputFromPoint());
+        sendResponse(1);
+        break;
+      case "getPwInput":
+        console.log('2222',getInputFromPoint());
+        sendResponse(2);
+        break;
+>>>>>>> Stashed changes
     }
   }
 );
